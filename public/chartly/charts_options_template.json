@@ -1,0 +1,183 @@
+[
+    {
+        "type": "line",
+        "options": {
+            "title": {
+                "show": true,
+                "text": "My Line Chart Title",
+                "textStyle": {
+                    "fontSize": 18,
+                    "color": "#333"
+                },
+                "subtext": "My Line Chart Subtitle",
+                "subtextStyle": {
+                    "fontSize": 12,
+                    "color": "#aaa"
+                },
+                "left": "left"
+            },
+            "tooltip": {
+                "show": true,
+                "trigger": "axis",
+                "axisPointer": {
+                    "type": "cross",
+                    "label": {
+                        "backgroundColor": "#6a7985"
+                    }
+                }
+            },
+            "toolbox": {
+                "show": true,
+                "feature": {
+                    "dataZoom": {
+                        "yAxisIndex": "none"
+                    },
+                    "dataView": {
+                        "readOnly": true
+                    },
+                    "restore": {},
+                    "saveAsImage": {}
+                }
+            },
+            "legend": {
+                "show": true,
+                "data": []
+            },
+            "xAxis": {
+                "type": "category",
+                "boundaryGap": false,
+                "data": []
+            },
+            "yAxis": {
+                "type": "value"
+            },
+            "series": [
+                {
+                    "type": "line",
+                    "data": []
+                }
+            ]
+        }
+    },
+    {
+        "type": "bar",
+        "options": {
+            "title": {
+                "show": true,
+                "text": "Bar chart title",
+                "textStyle": {
+                    "fontSize": 16,
+                    "color": "#333"
+                },
+                "subtext": "Bar chart subtitle",
+                "subtextStyle": {
+                    "fontSize": 12,
+                    "color": "#aaa"
+                },
+                "left": "left"
+            },
+            "tooltip": {
+                "show": true,
+                "trigger": "axis",
+                "axisPointer": {
+                    "type": "shadow",
+                    "label": {
+                        "backgroundColor": "#6a7985"
+                    }
+                }
+            },
+            "toolbox": {
+                "show": true,
+                "feature": {
+                    "dataZoom": {
+                        "yAxisIndex": "none"
+                    },
+                    "dataView": {
+                        "readOnly": true
+                    },
+                    "restore": {},
+                    "saveAsImage": {}
+                }
+            },
+            "legend": {
+                "show": true,
+                "data": []
+            },
+            "xAxis": {
+                "type": "category",
+                "data": [],
+                "axisTick": {
+                    "alignWithLabel": true
+                }
+            },
+            "yAxis": {
+                "type": "value"
+            },
+            "series": [
+                {
+                    "type": "bar",
+                    "data": []
+                }
+            ]
+        }
+    },
+    {
+        "type": "pie",
+        "options": {
+            "title": {
+                "text": "Referer of a Website",
+                "subtext": "Fake Data",
+                "left": "center"
+            },
+            "tooltip": {
+                "trigger": "item"
+            },
+            "legend": {
+                "orient": "vertical",
+                "left": "left"
+            },
+            "series": {
+                "name": "",
+                "type": "pie",
+                "radius": [
+                    "40%",
+                    "70%"
+                ],
+                "itemStyle": {
+                    "borderRadius": 10,
+                    "borderColor": "#fff",
+                    "borderWidth": 2
+                },
+                "emphasis": {
+                    "itemStyle": {
+                        "shadowBlur": 10,
+                        "shadowOffsetX": 0,
+                        "shadowColor": "rgba(0, 0, 0, 0.5)"
+                    }
+                },
+                "data": [
+                    {
+                        "value": 1048,
+                        "name": "Search Engine"
+                    },
+                    {
+                        "value": 735,
+                        "name": "Direct"
+                    },
+                    {
+                        "value": 580,
+                        "name": "Email"
+                    },
+                    {
+                        "value": 484,
+                        "name": "Union Ads"
+                    },
+                    {
+                        "value": 300,
+                        "name": "Video Ads"
+                    }
+                ]
+            }
+        }
+    }
+]

@@ -1,0 +1,9 @@
+<div class="p-1">
+    <div class="row g-1">
+        @for (myChart of chartsService.chartConfigurations(); track $index) {
+        <div [class]="'col-sm-'+myChart.columns">
+            <app-chart [chartOption]="myChart.options"></app-chart>
+        </div>
+        }
+    </div>
+</div>

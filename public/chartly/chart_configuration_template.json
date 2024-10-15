@@ -1,0 +1,23 @@
+{
+    "title": "Sample Line chart",
+    "type": "line",
+    "column": 6,
+    "data_objects": [
+        {
+            "category": "Added Date",
+            "numeric": "sell amount",
+            "aggregate": "SUM"
+        },
+        {
+            "category": "Added Date",
+            "numeric": "sell amount",
+            "aggregate": "SUM"
+        },
+        {
+            "category": "Added Date",
+            "numeric": "sell amount",
+            "aggregate": "SUM"
+        }
+    ],
+    "options": {}
+}

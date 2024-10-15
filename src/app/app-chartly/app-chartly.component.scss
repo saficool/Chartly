@@ -1,0 +1,9 @@
+#action-container {
+  width: 350px;
+  padding: 0.25em 0 0.25em 0.25em;
+  overflow: auto;
+}
+#chart-container {
+  width: calc(100vw - 300px);
+  overflow: auto;
+}

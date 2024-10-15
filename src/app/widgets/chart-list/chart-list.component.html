@@ -1,0 +1,18 @@
+<ul class="list-group">
+    @for (generated_chart of chartsService.chartConfigurations(); track $index){
+    <li class="list-group-item d-flex justify-content-between align-items-center p-2">
+        <div class="me-auto text-truncate" [title]="generated_chart.title">
+            {{generated_chart.title}}
+        </div>
+        <span class="text-success me-2">
+            C{{generated_chart.columns}}
+        </span>
+        <span type="button" class="me-2" (click)="editThisChart(generated_chart)">
+            <i class="bi bi-pencil-square text-warning"></i>
+        </span>
+        <span type="button" (click)="removeThisChart($index)">
+            <i class="bi bi-trash text-danger"></i>
+        </span>
+    </li>
+    }
+</ul>
