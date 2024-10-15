@@ -65,9 +65,45 @@ export class ChartDataManagerService implements IChartDataManager {
     });
   }
 
+  /**
+   * Move a column from numerical to categorical or vice versa.
+   * @param columnName The name of the column to move.
+   * @param toCategorical If true, moves column to categorical; otherwise, moves to numerical.
+   */
+  MoveColumn(columnName: string, toCategorical: boolean): void {
+    if (toCategorical) {
+      this.moveToCategorical(columnName);
+    } else {
+      this.moveToNumerical(columnName);
+    }
+  }
+
 
 
   private updateHasData() {
     this.hasData.set(this.chartData.length > 0);
+  }
+  private moveToCategorical(columnName: string): void {
+    // Find and remove the column from the numerical list if it exists
+    const numericalIndex = this.column_types.numerical.indexOf(columnName);
+    if (numericalIndex !== -1) {
+      this.column_types.numerical.splice(numericalIndex, 1);
+      // Add the column to the categorical list if it's not already present
+      if (!this.column_types.categorical.includes(columnName)) {
+        this.column_types.categorical.push(columnName);
+      }
+    }
+  }
+
+  private moveToNumerical(columnName: string): void {
+    // Find and remove the column from the categorical list if it exists
+    const categoricalIndex = this.column_types.categorical.indexOf(columnName);
+    if (categoricalIndex !== -1) {
+      this.column_types.categorical.splice(categoricalIndex, 1);
+      // Add the column to the numerical list if it's not already present
+      if (!this.column_types.numerical.includes(columnName)) {
+        this.column_types.numerical.push(columnName);
+      }
+    }
   }
 }

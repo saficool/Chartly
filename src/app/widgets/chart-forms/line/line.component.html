@@ -4,14 +4,14 @@
         <div class="col-sm-8">
             <div class="input-group input-group-sm shadow-sm">
                 <span class="input-group-text" id="title">Title</span>
-                <input type="text" [(ngModel)]="chart_options_template!.title.text" class="form-control shadow-none"
-                    aria-label="Title" aria-describedby="title">
+                <input type="text" [(ngModel)]="chart_configuration_template.options?.title!.text"
+                    class="form-control shadow-none" aria-label="Title" aria-describedby="title">
             </div>
         </div>
         <div class="col-sm-4">
             <div class="input-group input-group-sm shadow-sm">
                 <span class="input-group-text" id="title-font-size">Font Size</span>
-                <input type="number" [(ngModel)]="chart_options_template!.title.textStyle.fontSize"
+                <input type="number" [(ngModel)]="chart_configuration_template.options?.title!.textStyle!.fontSize"
                     class="form-control shadow-none" [min]="10" [max]="20" aria-label="Font Size"
                     aria-describedby="title-font-size">
             </div>
@@ -21,14 +21,14 @@
         <div class="col-sm-8">
             <div class="input-group input-group-sm shadow-sm">
                 <span class="input-group-text" id="subtitle">Subtitle</span>
-                <input type="text" [(ngModel)]="chart_options_template!.title.subtext" class="form-control shadow-none"
-                    aria-label="Subtitle" aria-describedby="subtitle">
+                <input type="text" [(ngModel)]="chart_configuration_template.options?.title!.subtext"
+                    class="form-control shadow-none" aria-label="Subtitle" aria-describedby="subtitle">
             </div>
         </div>
         <div class="col-sm-4">
             <div class="input-group input-group-sm shadow-sm">
                 <span class="input-group-text" id="title-font-size">Font Size</span>
-                <input type="number" [(ngModel)]="chart_options_template!.title.subtextStyle.fontSize"
+                <input type="number" [(ngModel)]="chart_configuration_template.options?.title!.subtextStyle!.fontSize"
                     class="form-control shadow-none" [min]="10" [max]="20" aria-label="Font Size"
                     aria-describedby="subtitle-font-size">
             </div>
@@ -53,14 +53,10 @@
                     <option [value]="12">12</option>
                 </select>
             </div>
-
-
         </div>
     </div>
     <hr>
-
-
-    <div class="row g-2">
+    <div class="row g-2 mb-2">
         <div class="col-sm-6">
             <div class="input-group input-group-sm shadow-sm">
                 <span class="input-group-text" id="categorical_column">
@@ -72,8 +68,8 @@
                         <line x1="3" y1="14" x2="15" y2="14" />
                     </svg>
                 </span>
-                <select [(ngModel)]="dataObject!.categorical_column" class="form-select form-select-sm shadow-sm"
-                    aria-label="Default select example">
+                <select [(ngModel)]="chart_configuration_template.data_object!.categorical_column"
+                    class="form-select form-select-sm shadow-sm" aria-label="Default select example">
                     @for (categorical of column_types.categorical; track $index) {
                     <option [value]="categorical">{{categorical}}</option>
                     }
@@ -83,7 +79,8 @@
         </div>
     </div>
     <div class="row g-2 mb-2">
-        @for (aggregate_numerical_object of dataObject.aggregate_numerical_objects; track $index) {
+        @for (aggregate_numerical_object of chart_configuration_template.data_object.aggregate_numerical_objects;
+        track $index) {
         <div class="col-sm-6">
             <div class="input-group input-group-sm shadow-sm">
                 <span class="input-group-text" id="numerical_column">
@@ -137,9 +134,9 @@
             </button>
         </div>
     </div>
+    <hr>
+    <button type="button" class="btn btn-sm btn-primary w-100" aria-label="Add data"
+        (click)="saveChartConfiguration(chart_configuration_template.id)">
+        <i class="bi bi-save me-2"></i> Save
+    </button>
 </div>
-<hr>
-<button type="button" class="btn btn-sm btn-primary w-100" aria-label="Add data"
-    (click)="saveChartConfiguration(chart_configuration_template.id)">
-    <i class="bi bi-save me-2"></i> Save
-</button>

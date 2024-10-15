@@ -19,7 +19,6 @@ import { RandomNumberGeneratorService } from '../../../services/random-number-ge
 export class BarComponent {
   protected isMultiSeriesChart: boolean = false
   protected chart_configuration_template: IChartConfiguration | any
-  @Output() chart_configuration_template_change = new EventEmitter<IChartConfiguration>();
   //-------------------------------------------------- //
 
   private chart_data_json: any[] = []

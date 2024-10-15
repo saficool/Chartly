@@ -4,11 +4,13 @@ import { ColumnTypesContainerComponent } from '../widgets/column-types-container
 import { AddNewChartComponent } from '../widgets/add-new-chart/add-new-chart.component';
 import { ChartListComponent } from '../widgets/chart-list/chart-list.component';
 import { ChartContainerComponent } from '../widgets/chart-container/chart-container.component';
+import { HeaderComponent } from '../widgets/header/header.component';
 
 @Component({
   selector: 'app-app-chartly',
   standalone: true,
   imports: [
+    HeaderComponent,
     FileImportComponent,
     ColumnTypesContainerComponent,
     AddNewChartComponent,

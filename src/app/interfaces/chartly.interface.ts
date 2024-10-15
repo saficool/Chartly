@@ -25,6 +25,7 @@ export interface IChartDataManager {
     ImportFile(file: File): Promise<boolean>;
     GetJsonChartData(): Promise<any[]>
     GetChartdataColumnType(): Promise<IChartDataColumnTypes>
+    MoveColumn(columnName: string, toCategorical: boolean): void
 }
 
 export interface IChartDataColumnTypes {

@@ -9,6 +9,7 @@ import { AggregateFunctionsService } from '../../../services/aggregate-functions
 import { ChartsService } from '../../../services/charts.service';
 import { EnumToArrayPipe } from '../../../pipes/enum-to-array.pipe';
 import { RandomNumberGeneratorService } from '../../../services/random-number-generator.service';
+import { DynamicDialogConfig } from 'primeng/dynamicdialog';
 
 @Component({
   selector: 'app-line',
@@ -18,115 +19,65 @@ import { RandomNumberGeneratorService } from '../../../services/random-number-ge
   styleUrl: './line.component.scss'
 })
 export class LineComponent {
+  protected isMultiSeriesChart: boolean = false
+  protected chart_configuration_template: IChartConfiguration | any
+  //-------------------------------------------------- //
 
-  protected _isMultiSeriesChart = input<boolean>(false)
-  protected _chart_configuration_template = input<IChartConfiguration>
-  @Output() _chart_configuration_template_change = new EventEmitter<IChartConfiguration>();
-
-
-  // Belongs to here
   private chart_data_json: any[] = []
   protected aggregate_functions = AggregateFunctionEnum
-  // Used in HTMl template
   protected column_types: IChartDataColumnTypes = {
-    categorical: [],
-    numerical: []
+    categorical: [], numerical: []
   }
-  // Used in HTMl template
-  protected dataObject: IDataObject = {
-    categorical_column: '',
-    aggregate_numerical_objects: []
-  }
-  // Used in HTMl template
-  protected chart_options_template: any = {}
-  // Used in HTMl template
-  protected chart_configuration_template: IChartConfiguration = {
-    id: 0,
-    columns: 12,
-    type: ChartTypeEnum.LINE,
-    title: '',
-    data_object: undefined,
-    options: undefined
-  }
-
-  // Dependency Injection
-  private chartJsonTemplateService = inject(ChartJsonTemplateService)
+  //-------------------------------------------------------- //
   private chartDataManagerService = inject(ChartDataManagerService)
+  private dynamicDialogConfig = inject(DynamicDialogConfig)
   private aggregateFunctionsService = inject(AggregateFunctionsService)
   private randomNumberGeneratorService = inject(RandomNumberGeneratorService)
   protected chartsService = inject(ChartsService)
 
-  ngOnInit(): void {
-    this.chart_configuration_template.columns = 6
-    this.chart_configuration_template.type = ChartTypeEnum.LINE
+  constructor() {
     this.getJsonChartData()
-    this.accumulatedMethodCall()
+    this.getChartDataColumnType()
+    this.isMultiSeriesChart = this.dynamicDialogConfig.data.isMultiSeriesChart
+    this.chart_configuration_template = this.dynamicDialogConfig.data.chart_configuration_template
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes['_isMultiSeriesChart']) {
-      console.log('_isMultiSeriesChart:', this._isMultiSeriesChart);
-    }
-    if (changes['_chart_configuration_template']) {
-      console.log('_chart_configuration_template:', this._chart_configuration_template);
-    }
+  ngOnInit(): void {
+    console.log(this.isMultiSeriesChart)
+    console.log(this.chart_configuration_template)
 
   }
 
-  // It belongs to here
   async getJsonChartData(): Promise<void> {
     this.chartDataManagerService.GetJsonChartData().then((data: any[]) => {
       this.chart_data_json = data
     })
   }
-
-  async accumulatedMethodCall(): Promise<void> {
-    await this.getChartdataColumnType()
-    await this.getChartsOptionsTemplate()
-  }
-
-  async getChartdataColumnType(): Promise<void> {
+  async getChartDataColumnType(): Promise<void> {
     this.chartDataManagerService.GetChartdataColumnType()
       .then((data: IChartDataColumnTypes) => {
         this.column_types = data;
-
-        const aggregateNumericalObject: IAggregateNumericalObject = {
-          numerical_column: this.column_types.numerical[0],
-          aggregate_function: AggregateFunctionEnum.COUNT
-        }
-        this.dataObject.categorical_column = this.column_types.categorical[0]
-        this.dataObject.aggregate_numerical_objects.push(aggregateNumericalObject)
       })
   }
-
-  async getChartsOptionsTemplate(): Promise<void> {
-    await this.chartJsonTemplateService.GetChartsOptionsTemplate(ChartTypeEnum.LINE)
-      .then((data: EChartsOption) => {
-        this.chart_options_template = data
-      })
-  }
-
   addAggregateNumericalObject() {
     const aggregateNumericalObject: IAggregateNumericalObject = {
       numerical_column: this.column_types.numerical[0],
       aggregate_function: AggregateFunctionEnum.COUNT
     }
-    this.dataObject.aggregate_numerical_objects.push(aggregateNumericalObject)
+    this.chart_configuration_template.data_object?.aggregate_numerical_objects.push(aggregateNumericalObject)
+  }
+  removeAggregateNumericalObject(index: number) {
+    this.chart_configuration_template.data_object?.aggregate_numerical_objects.splice(index, 1)
   }
 
-  removeAggregateNumericalObject(index: number) {
-    this.dataObject.aggregate_numerical_objects.splice(index, 1)
-  }
 
   protected async saveChartConfiguration(index: number) {
-    this.chart_configuration_template.data_object = this.dataObject
     await this.prepareChartdata().then(data => {
-      this.chart_options_template.legend.data = data.legend
-      this.chart_options_template.xAxis.data = data.xAxis
-      this.chart_options_template.series = data.series
+      this.chart_configuration_template.options.legend!.data = data.legend
+      this.chart_configuration_template.options.xAxis.data = data.xAxis
+      this.chart_configuration_template.options.series = data.series
     })
-    this.chart_configuration_template.title = this.chart_options_template.title.text
-    this.chart_configuration_template.options = this.chart_options_template
+    this.chart_configuration_template.title = this.chart_configuration_template.options.title.text
 
     if (this.chart_configuration_template.id == 0) {
       this.chart_configuration_template.id = this.randomNumberGeneratorService.GenerateRandomNumber()
@@ -312,7 +263,7 @@ export class LineComponent {
 
     return {
       series: _data,
-      legend: aggregate_numerical_objects.map(m => m.numerical_column),
+      legend: aggregate_numerical_objects.map((m: any) => m.numerical_column),
       xAxis: [..._xAxis]
     }
   }
