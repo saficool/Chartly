@@ -41,9 +41,6 @@ export class BarComponent {
   }
 
   ngOnInit(): void {
-    console.log(this.isMultiSeriesChart)
-    console.log(this.chart_configuration_template)
-
   }
 
   async getJsonChartData(): Promise<void> {

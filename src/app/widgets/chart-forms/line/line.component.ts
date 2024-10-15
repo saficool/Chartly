@@ -43,8 +43,6 @@ export class LineComponent {
   }
 
   ngOnInit(): void {
-    console.log(this.isMultiSeriesChart)
-    console.log(this.chart_configuration_template)
 
   }
 

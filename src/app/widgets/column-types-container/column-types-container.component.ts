@@ -31,8 +31,7 @@ export class ColumnTypesContainerComponent {
   async getChartDataColumnType(): Promise<void> {
     this.chartDataManagerService.GetChartdataColumnType()
       .then((data: IChartDataColumnTypes) => {
-        this.column_types = data;;
-        console.log(this.column_types)
+        this.column_types = data;
       })
   }
 
