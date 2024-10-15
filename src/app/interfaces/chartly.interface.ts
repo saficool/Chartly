@@ -26,6 +26,7 @@ export interface IChartDataManager {
     GetJsonChartData(): Promise<any[]>
     GetChartdataColumnType(): Promise<IChartDataColumnTypes>
     MoveColumn(columnName: string, toCategorical: boolean): void
+    UpdateChartDataColumnTypes(columns: IChartDataColumnTypes): void
 }
 
 export interface IChartDataColumnTypes {

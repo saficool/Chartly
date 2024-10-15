@@ -5,6 +5,7 @@ import { DynamicDialogConfig } from 'primeng/dynamicdialog';
 import { ViewChartDataComponent } from '../view-chart-data/view-chart-data.component';
 import { IDynamicDialog, IDynamicDialogConfig } from '../../interfaces/dynamic-dialog.interface';
 import { DynamicDialogService } from '../../services/dynamic-dialog.service';
+import { ColumnTypesContainerComponent } from '../column-types-container/column-types-container.component';
 
 @Component({
   selector: 'app-file-import',
@@ -55,6 +56,24 @@ export class FileImportComponent {
     }
     const dynamicDialogConfig: IDynamicDialogConfig = {
       component: ViewChartDataComponent,
+      config: config
+    }
+    this.dynamicDialogService.ShowDialog(dynamicDialogConfig);
+  }
+
+  protected viewHeaders() {
+    const config: DynamicDialogConfig = {
+      header: "Headers",
+      width: '400px',
+      closeOnEscape: false,
+      modal: true,
+      resizable: false,
+      draggable: true,
+      maximizable: false,
+      position: "center"
+    }
+    const dynamicDialogConfig: IDynamicDialogConfig = {
+      component: ColumnTypesContainerComponent,
       config: config
     }
     this.dynamicDialogService.ShowDialog(dynamicDialogConfig);

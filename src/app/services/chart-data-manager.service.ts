@@ -65,6 +65,10 @@ export class ChartDataManagerService implements IChartDataManager {
     });
   }
 
+  UpdateChartDataColumnTypes(columns: IChartDataColumnTypes): void {
+    this.column_types = columns
+  }
+
   /**
    * Move a column from numerical to categorical or vice versa.
    * @param columnName The name of the column to move.

@@ -1,7 +1,12 @@
-<ul class="list-group mb-1">
-    <li class="list-group-item p-1">An item</li>
-    <li class="list-group-item p-1">A second item</li>
-    <li class="list-group-item p-1">A third item</li>
-    <li class="list-group-item p-1">A fourth item</li>
-    <li class="list-group-item p-1">And a fifth one</li>
+<ul class="list-group">
+    @for (column of columns; track $index) {
+    <li class="list-group-item d-flex align-items-center p-1">
+        <span class="badge rounded-pill me-2"
+            [ngClass]="{'text-bg-primary':column.type=='N','text-bg-info':column.type=='C' }">{{column.type}}</span>
+        {{column.column}}
+        <span class="text-muted ms-auto fs-6" (click)="changeColumnType($index)">
+            <i class="bi bi-arrow-right-square"></i>
+        </span>
+    </li>
+    }
 </ul>
