@@ -1,8 +1,6 @@
-import { Component, EventEmitter, inject, input, Output, SimpleChanges } from '@angular/core';
-import { ChartJsonTemplateService } from '../../../services/chart-json_template.service';
-import { IAggregateNumericalObject, IChartConfiguration, IChartDataColumnTypes, IDataObject } from '../../../interfaces/chartly.interface';
-import { AggregateFunctionEnum, ChartTypeEnum } from '../../../enums/chartly.enum';
-import { EChartsOption } from 'echarts';
+import { Component, inject } from '@angular/core';
+import { IAggregateNumericalObject, IChartConfiguration, IChartDataColumnTypes } from '../../../interfaces/chartly.interface';
+import { AggregateFunctionEnum } from '../../../enums/chartly.enum';
 import { FormsModule } from '@angular/forms';
 import { ChartDataManagerService } from '../../../services/chart-data-manager.service';
 import { AggregateFunctionsService } from '../../../services/aggregate-functions.service';

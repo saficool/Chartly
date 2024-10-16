@@ -1,6 +1,5 @@
 <div id="chart-modal">
-    <div class="row g-2">
-        <!-- Title -->
+    <div class="row g-2 mb-4">
         <div class="col-sm-8">
             <div class="input-group input-group-sm shadow-sm">
                 <span class="input-group-text" id="title">Title</span>
@@ -8,34 +7,6 @@
                     class="form-control shadow-none" aria-label="Title" aria-describedby="title">
             </div>
         </div>
-        <div class="col-sm-4">
-            <div class="input-group input-group-sm shadow-sm">
-                <span class="input-group-text" id="title-font-size">Font Size</span>
-                <input type="number" [(ngModel)]="chart_configuration_template.options?.title!.textStyle!.fontSize"
-                    class="form-control shadow-none" [min]="10" [max]="20" aria-label="Font Size"
-                    aria-describedby="title-font-size">
-            </div>
-        </div>
-
-        <!-- Subtitle -->
-        <div class="col-sm-8">
-            <div class="input-group input-group-sm shadow-sm">
-                <span class="input-group-text" id="subtitle">Subtitle</span>
-                <input type="text" [(ngModel)]="chart_configuration_template.options?.title!.subtext"
-                    class="form-control shadow-none" aria-label="Subtitle" aria-describedby="subtitle">
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div class="input-group input-group-sm shadow-sm">
-                <span class="input-group-text" id="title-font-size">Font Size</span>
-                <input type="number" [(ngModel)]="chart_configuration_template.options?.title!.subtextStyle!.fontSize"
-                    class="form-control shadow-none" [min]="10" [max]="20" aria-label="Font Size"
-                    aria-describedby="subtitle-font-size">
-            </div>
-        </div>
-
-        <div class="col-sm-8"></div>
-        <!-- Columns -->
         <div class="col-sm-4">
             <div class="input-group input-group-sm shadow-sm">
                 <span class="input-group-text" id="column">Column</span>
@@ -55,7 +26,6 @@
             </div>
         </div>
     </div>
-    <hr>
     <div class="row g-2 mb-2">
         <div class="col-sm-6">
             <div class="input-group input-group-sm shadow-sm">
@@ -75,7 +45,6 @@
                     }
                 </select>
             </div>
-
         </div>
     </div>
     <div class="row g-2 mb-2">
@@ -120,7 +89,7 @@
         </div>
         <div class="col-sm-1">
             <button type="button" class="btn btn-sm btn-danger w-100" aria-label="Delete data"
-                (click)="removeAggregateNumericalObject($index)">
+                [disabled]="!isMultiSeriesChart" (click)="removeAggregateNumericalObject($index)">
                 <i class="bi bi-trash"></i>
             </button>
         </div>
@@ -128,7 +97,7 @@
     </div>
     <div class="row g-2">
         <div class="col-sm-12 d-flex justify-content-end">
-            <button type="button" class="btn btn-sm btn-primary" aria-label="Add data"
+            <button type="button" class="btn btn-sm btn-primary" aria-label="Add data" [disabled]="!isMultiSeriesChart"
                 (click)="addAggregateNumericalObject()">
                 <i class="bi bi-plus-lg"></i>
             </button>

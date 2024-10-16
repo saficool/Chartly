@@ -1,6 +1,7 @@
 import { EChartsOption } from "echarts";
 import { AggregateFunctionEnum, ChartTypeEnum } from "../enums/chartly.enum";
 import { SafeHtml } from "@angular/platform-browser";
+import { Component, Type } from "@angular/core";
 
 export interface IChartConfiguration {
     id: number,
@@ -36,7 +37,9 @@ export interface IChartDataColumnTypes {
 
 export interface IAvailableChart {
     chartType: ChartTypeEnum,
-    chartIcon: SafeHtml
+    chartIcon: SafeHtml,
+    chartFormTemplate: Type<any>,
+    isMultiSeriesChart: boolean
 }
 
 

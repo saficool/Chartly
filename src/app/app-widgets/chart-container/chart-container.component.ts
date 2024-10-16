@@ -16,6 +16,5 @@ export class ChartContainerComponent {
 
   protected chartsService = inject(ChartsService)
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 }

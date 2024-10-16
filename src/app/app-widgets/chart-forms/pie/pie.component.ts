@@ -1,22 +1,23 @@
-import { Component, EventEmitter, inject, input, Output } from '@angular/core';
-import { IAggregateNumericalObject, IChartConfiguration, IChartDataColumnTypes } from '../../../interfaces/chartly.interface';
+import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { DynamicDialogConfig } from 'primeng/dynamicdialog';
+import { EnumToArrayPipe } from '../../../pipes/enum-to-array.pipe';
+import { IAggregateNumericalObject, IChartConfiguration, IChartDataColumnTypes } from '../../../interfaces/chartly.interface';
 import { AggregateFunctionEnum } from '../../../enums/chartly.enum';
 import { ChartDataManagerService } from '../../../services/chart-data-manager.service';
+import { DynamicDialogConfig } from 'primeng/dynamicdialog';
 import { AggregateFunctionsService } from '../../../services/aggregate-functions.service';
-import { ChartsService } from '../../../services/charts.service';
-import { EnumToArrayPipe } from '../../../pipes/enum-to-array.pipe';
 import { RandomNumberGeneratorService } from '../../../services/random-number-generator.service';
+import { ChartsService } from '../../../services/charts.service';
 
 @Component({
-  selector: 'app-bar',
+  selector: 'app-pie',
   standalone: true,
-  imports: [FormsModule, EnumToArrayPipe],
-  templateUrl: './bar.component.html',
-  styleUrl: './bar.component.scss'
+  imports: [EnumToArrayPipe, FormsModule],
+  templateUrl: './pie.component.html',
+  styleUrl: './pie.component.scss'
 })
-export class BarComponent {
+export class PieComponent {
+
   protected isMultiSeriesChart: boolean = false
   protected chart_configuration_template: IChartConfiguration | any
   //-------------------------------------------------- //
@@ -68,9 +69,7 @@ export class BarComponent {
 
   protected async saveChartConfiguration(index: number) {
     await this.prepareChartdata().then(data => {
-      this.chart_configuration_template.options.legend!.data = data.legend
-      this.chart_configuration_template.options.xAxis.data = data.xAxis
-      this.chart_configuration_template.options.series = data.series
+      this.chart_configuration_template.options.series[0].data = data
     })
     this.chart_configuration_template.title = this.chart_configuration_template.options.title.text
 
@@ -86,8 +85,7 @@ export class BarComponent {
 
   }
 
-  private async prepareChartdata(): Promise<any> {
-    let _xAxis: Set<string> = new Set<string>();
+  private async prepareChartdata(): Promise<any[]> {
     let _data: any[] = []
     const aggregate_numerical_objects = this.chart_configuration_template.data_object?.aggregate_numerical_objects!
     aggregate_numerical_objects.forEach((aggregate_numerical_object: IAggregateNumericalObject) => {
@@ -98,15 +96,7 @@ export class BarComponent {
             this.chart_configuration_template.data_object?.categorical_column!,
             aggregate_numerical_object.numerical_column
           )
-          _data.push(
-            {
-              name: aggregate_numerical_object.numerical_column,
-              type: 'bar',
-              data: result_avg.map(m => Number(m.value.toFixed(2)))
-            }
-          )
-          const categories_avg = result_avg.map(m => m.category)
-          for (const category of categories_avg) { _xAxis.add(category); }
+          _data.push(...result_avg.map(m => { return { name: m.category, value: Number(m.value.toFixed(2)) } }))
           break;
         case AggregateFunctionEnum.COUNT:
           const result_count = this.aggregateFunctionsService.aggregateCountByCategory(
@@ -114,15 +104,7 @@ export class BarComponent {
             this.chart_configuration_template.data_object?.categorical_column!,
             aggregate_numerical_object.numerical_column
           )
-          _data.push(
-            {
-              name: aggregate_numerical_object.numerical_column,
-              type: 'bar',
-              data: result_count.map(m => Number(m.value.toFixed(2)))
-            }
-          )
-          const categories_count = result_count.map(m => m.category)
-          for (const category of categories_count) { _xAxis.add(category); }
+          _data.push(...result_count.map(m => { return { name: m.category, value: Number(m.value.toFixed(2)) } }))
           break;
         case AggregateFunctionEnum.MAX:
           const result_max = this.aggregateFunctionsService.aggregateMaxByCategory(
@@ -130,15 +112,7 @@ export class BarComponent {
             this.chart_configuration_template.data_object?.categorical_column!,
             aggregate_numerical_object.numerical_column
           )
-          _data.push(
-            {
-              name: aggregate_numerical_object.numerical_column,
-              type: 'bar',
-              data: result_max.map(m => Number(m.value.toFixed(2)))
-            }
-          )
-          const categories_max = result_max.map(m => m.category)
-          for (const category of categories_max) { _xAxis.add(category); }
+          _data.push(...result_max.map(m => { return { name: m.category, value: Number(m.value.toFixed(2)) } }))
           break;
         case AggregateFunctionEnum.MEDIAN:
           const result_median = this.aggregateFunctionsService.aggregateMedianByCategory(
@@ -146,15 +120,7 @@ export class BarComponent {
             this.chart_configuration_template.data_object?.categorical_column!,
             aggregate_numerical_object.numerical_column
           )
-          _data.push(
-            {
-              name: aggregate_numerical_object.numerical_column,
-              type: 'bar',
-              data: result_median.map(m => Number(m.value.toFixed(2)))
-            }
-          )
-          const categories_median = result_median.map(m => m.category)
-          for (const category of categories_median) { _xAxis.add(category); }
+          _data.push(...result_median.map(m => { return { name: m.category, value: Number(m.value.toFixed(2)) } }))
           break;
         case AggregateFunctionEnum.MIN:
           const result_min = this.aggregateFunctionsService.aggregateMinByCategory(
@@ -162,15 +128,7 @@ export class BarComponent {
             this.chart_configuration_template.data_object?.categorical_column!,
             aggregate_numerical_object.numerical_column
           )
-          _data.push(
-            {
-              name: aggregate_numerical_object.numerical_column,
-              type: 'bar',
-              data: result_min.map(m => Number(m.value.toFixed(2)))
-            }
-          )
-          const categories_min = result_min.map(m => m.category)
-          for (const category of categories_min) { _xAxis.add(category); }
+          _data.push(...result_min.map(m => { return { name: m.category, value: Number(m.value.toFixed(2)) } }))
           break;
         case AggregateFunctionEnum.MODE:
           const result_mode = this.aggregateFunctionsService.aggregateModeByCategory(
@@ -178,15 +136,7 @@ export class BarComponent {
             this.chart_configuration_template.data_object?.categorical_column!,
             aggregate_numerical_object.numerical_column
           )
-          _data.push(
-            {
-              name: aggregate_numerical_object.numerical_column,
-              type: 'bar',
-              data: result_mode.map(m => Number(m.value.toFixed(2)))
-            }
-          )
-          const categories_mode = result_mode.map(m => m.category)
-          for (const category of categories_mode) { _xAxis.add(category); }
+          _data.push(...result_mode.map(m => { return { name: m.category, value: Number(m.value.toFixed(2)) } }))
           break;
         case AggregateFunctionEnum.QTL:
           const result_qtl = this.aggregateFunctionsService.aggregateQuantilesByCategory(
@@ -195,15 +145,7 @@ export class BarComponent {
             aggregate_numerical_object.numerical_column,
             [0.25, 0.5, 0.75, 1]
           )
-          _data.push(
-            {
-              name: aggregate_numerical_object.numerical_column,
-              type: 'bar',
-              data: result_qtl.map(m => Number(m.value.toFixed(2)))
-            }
-          )
-          const categories_qtl = result_qtl.map(m => m.category)
-          for (const category of categories_qtl) { _xAxis.add(category); }
+          _data.push(...result_qtl.map(m => { return { name: m.category, value: Number(m.value.toFixed(2)) } }))
           break;
         case AggregateFunctionEnum.SD:
           const result_sd = this.aggregateFunctionsService.aggregateStandardDeviationByCategory(
@@ -211,15 +153,7 @@ export class BarComponent {
             this.chart_configuration_template.data_object?.categorical_column!,
             aggregate_numerical_object.numerical_column
           )
-          _data.push(
-            {
-              name: aggregate_numerical_object.numerical_column,
-              type: 'bar',
-              data: result_sd.map(m => Number(m.value.toFixed(2)))
-            }
-          )
-          const categories_sd = result_sd.map(m => m.category)
-          for (const category of categories_sd) { _xAxis.add(category); }
+          _data.push(...result_sd.map(m => { return { name: m.category, value: Number(m.value.toFixed(2)) } }))
           break;
         case AggregateFunctionEnum.SUM:
           const result_sum = this.aggregateFunctionsService.aggregateSumByCategory(
@@ -227,15 +161,7 @@ export class BarComponent {
             this.chart_configuration_template.data_object?.categorical_column!,
             aggregate_numerical_object.numerical_column
           )
-          _data.push(
-            {
-              name: aggregate_numerical_object.numerical_column,
-              type: 'bar',
-              data: result_sum.map(m => Number(m.value.toFixed(2)))
-            }
-          )
-          const categories_sum = result_sum.map(m => m.category)
-          for (const category of categories_sum) { _xAxis.add(category); }
+          _data.push(...result_sum.map(m => { return { name: m.category, value: Number(m.value.toFixed(2)) } }))
           break;
         case AggregateFunctionEnum.VR:
           const result_vr = this.aggregateFunctionsService.aggregateVarianceByCategory(
@@ -243,23 +169,10 @@ export class BarComponent {
             this.chart_configuration_template.data_object?.categorical_column!,
             aggregate_numerical_object.numerical_column
           )
-          _data.push(
-            {
-              name: aggregate_numerical_object.numerical_column,
-              type: 'bar',
-              data: result_vr.map(m => Number(m.value.toFixed(2)))
-            }
-          )
-          const categories_vr = result_vr.map(m => m.category)
-          for (const category of categories_vr) { _xAxis.add(category); }
+          _data.push(...result_vr.map(m => { return { name: m.category, value: Number(m.value.toFixed(2)) } }))
           break;
       }
     });
-
-    return {
-      series: _data,
-      legend: aggregate_numerical_objects.map((m: any) => m.numerical_column),
-      xAxis: [..._xAxis]
-    }
+    return _data
   }
 }

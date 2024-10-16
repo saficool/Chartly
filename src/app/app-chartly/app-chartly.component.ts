@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { FileImportComponent } from '../widgets/file-import/file-import.component';
-import { AddNewChartComponent } from '../widgets/add-new-chart/add-new-chart.component';
-import { ChartListComponent } from '../widgets/chart-list/chart-list.component';
-import { ChartContainerComponent } from '../widgets/chart-container/chart-container.component';
-import { HeaderComponent } from '../widgets/header/header.component';
+import { HeaderComponent } from '../app-widgets/header/header.component';
+import { FileImportComponent } from '../app-widgets/file-import/file-import.component';
+import { AddNewChartComponent } from '../app-widgets/add-new-chart/add-new-chart.component';
+import { ChartListComponent } from '../app-widgets/chart-list/chart-list.component';
+import { ChartContainerComponent } from '../app-widgets/chart-container/chart-container.component';
 
 @Component({
   selector: 'app-app-chartly',

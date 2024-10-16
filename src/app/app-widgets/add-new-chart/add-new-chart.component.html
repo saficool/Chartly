@@ -4,7 +4,7 @@
             @for (available_chart of available_charts; track $index) {
             <div class="col-2">
                 <div class="chart-icon" [ngClass]="{'disabled-chart-icon': !hasChartData}"
-                    [title]="available_chart.chartType" (dblclick)="viewNewChartDialog(available_chart)">
+                    [title]="available_chart.chartType" (click)="viewNewChartDialog(available_chart)">
                     <div [innerHTML]="available_chart.chartIcon"></div>
                 </div>
             </div>

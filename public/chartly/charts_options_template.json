@@ -3,181 +3,177 @@
         "type": "line",
         "options": {
             "title": {
-                "show": true,
-                "text": "My Line Chart Title",
+                "text": "Sample Tilte",
                 "textStyle": {
-                    "fontSize": 18,
-                    "color": "#333"
-                },
-                "subtext": "My Line Chart Subtitle",
-                "subtextStyle": {
-                    "fontSize": 12,
-                    "color": "#aaa"
-                },
-                "left": "left"
-            },
-            "tooltip": {
-                "show": true,
-                "trigger": "axis",
-                "axisPointer": {
-                    "type": "cross",
-                    "label": {
-                        "backgroundColor": "#6a7985"
-                    }
+                    "fontSize": 14
                 }
             },
+            "xAxis": {
+                "type": "category",
+                "data": []
+            },
+            "yAxis": {},
+            "tooltip": {},
             "toolbox": {
-                "show": true,
+                "left": "right",
+                "top": "bottom",
+                "orient": "horizontal",
                 "feature": {
-                    "dataZoom": {
-                        "yAxisIndex": "none"
-                    },
-                    "dataView": {
-                        "readOnly": true
-                    },
-                    "restore": {},
                     "saveAsImage": {}
                 }
             },
             "legend": {
-                "show": true,
-                "data": []
+                "left": "right",
+                "orient": "horizontal"
             },
-            "xAxis": {
-                "type": "category",
-                "boundaryGap": false,
-                "data": []
-            },
-            "yAxis": {
-                "type": "value"
-            },
-            "series": [
-                {
-                    "type": "line",
-                    "data": []
-                }
-            ]
+            "series": []
         }
     },
     {
         "type": "bar",
         "options": {
             "title": {
-                "show": true,
-                "text": "Bar chart title",
+                "text": "Sample Tilte",
                 "textStyle": {
-                    "fontSize": 16,
-                    "color": "#333"
-                },
-                "subtext": "Bar chart subtitle",
-                "subtextStyle": {
-                    "fontSize": 12,
-                    "color": "#aaa"
-                },
-                "left": "left"
-            },
-            "tooltip": {
-                "show": true,
-                "trigger": "axis",
-                "axisPointer": {
-                    "type": "shadow",
-                    "label": {
-                        "backgroundColor": "#6a7985"
-                    }
+                    "fontSize": 14
                 }
             },
+            "xAxis": {
+                "type": "category",
+                "data": []
+            },
+            "yAxis": {},
+            "tooltip": {},
             "toolbox": {
-                "show": true,
+                "left": "right",
+                "top": "bottom",
+                "orient": "horizontal",
                 "feature": {
-                    "dataZoom": {
-                        "yAxisIndex": "none"
-                    },
-                    "dataView": {
-                        "readOnly": true
-                    },
-                    "restore": {},
                     "saveAsImage": {}
                 }
             },
             "legend": {
-                "show": true,
-                "data": []
+                "left": "right",
+                "orient": "horizontal"
             },
-            "xAxis": {
-                "type": "category",
-                "data": [],
-                "axisTick": {
-                    "alignWithLabel": true
-                }
-            },
-            "yAxis": {
-                "type": "value"
-            },
-            "series": [
-                {
-                    "type": "bar",
-                    "data": []
-                }
-            ]
+            "series": []
         }
     },
     {
         "type": "pie",
         "options": {
             "title": {
-                "text": "Referer of a Website",
-                "subtext": "Fake Data",
-                "left": "center"
+                "text": "Sample Tilte",
+                "textStyle": {
+                    "fontSize": 14
+                }
             },
-            "tooltip": {
-                "trigger": "item"
+            "tooltip": {},
+            "toolbox": {
+                "left": "right",
+                "top": "bottom",
+                "orient": "horizontal",
+                "feature": {
+                    "saveAsImage": {}
+                }
             },
             "legend": {
-                "orient": "vertical",
-                "left": "left"
+                "left": "right",
+                "orient": "vertical"
             },
-            "series": {
-                "name": "",
-                "type": "pie",
-                "radius": [
-                    "40%",
-                    "70%"
-                ],
-                "itemStyle": {
-                    "borderRadius": 10,
-                    "borderColor": "#fff",
-                    "borderWidth": 2
-                },
-                "emphasis": {
-                    "itemStyle": {
-                        "shadowBlur": 10,
-                        "shadowOffsetX": 0,
-                        "shadowColor": "rgba(0, 0, 0, 0.5)"
-                    }
-                },
-                "data": [
+            "series": [
+                {
+                    "name": "",
+                    "type": "pie",
+                    "radius": [
+                        "40%",
+                        "70%"
+                    ],
+                    "data": []
+                }
+            ]
+        }
+    },
+    {
+        "type": "radar",
+        "options": {
+            "title": {
+                "text": "Sample Tilte",
+                "textStyle": {
+                    "fontSize": 14
+                }
+            },
+            "tooltip": {},
+            "toolbox": {
+                "left": "right",
+                "top": "bottom",
+                "orient": "horizontal",
+                "feature": {
+                    "saveAsImage": {}
+                }
+            },
+            "legend": {
+                "left": "right",
+                "orient": "vertical"
+            },
+            "radar": {
+                "indicator": [
                     {
-                        "value": 1048,
-                        "name": "Search Engine"
+                        "name": "Sales",
+                        "max": 6500
                     },
                     {
-                        "value": 735,
-                        "name": "Direct"
+                        "name": "Administration",
+                        "max": 16000
                     },
                     {
-                        "value": 580,
-                        "name": "Email"
+                        "name": "Information Technology",
+                        "max": 30000
                     },
                     {
-                        "value": 484,
-                        "name": "Union Ads"
+                        "name": "Customer Support",
+                        "max": 38000
                     },
                     {
-                        "value": 300,
-                        "name": "Video Ads"
+                        "name": "Development",
+                        "max": 52000
+                    },
+                    {
+                        "name": "Marketing",
+                        "max": 25000
                     }
                 ]
-            }
+            },
+            "series": [
+                {
+                    "name": "B",
+                    "type": "radar",
+                    "data": [
+                        {
+                            "value": [
+                                4200,
+                                3000,
+                                20000,
+                                35000,
+                                50000,
+                                18000
+                            ],
+                            "name": "Allocated Budget"
+                        },
+                        {
+                            "value": [
+                                5000,
+                                14000,
+                                28000,
+                                26000,
+                                42000,
+                                21000
+                            ],
+                            "name": "Actual Spending"
+                        }
+                    ]
+                }
+            ]
         }
     }
 ]

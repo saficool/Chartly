@@ -2,17 +2,8 @@ import { Component, effect, inject } from '@angular/core';
 import { DynamicDialogConfig } from 'primeng/dynamicdialog';
 import { AggregateFunctionEnum, ChartTypeEnum } from '../../enums/chartly.enum';
 import { AVAILABLE_CHARTS } from '../../consts/chartly.constants';
-import { IAggregateNumericalObject, IAvailableChart, IChartConfiguration, IChartDataColumnTypes, IDataObject } from '../../interfaces/chartly.interface';
+import { IAvailableChart, IChartConfiguration, IChartDataColumnTypes, IDataObject } from '../../interfaces/chartly.interface';
 import { DomSanitizer } from '@angular/platform-browser';
-import { LineComponent } from '../chart-forms/line/line.component';
-import { BarComponent } from '../chart-forms/bar/bar.component';
-import { PieComponent } from '../chart-forms/pie/pie.component';
-import { ScatterComponent } from '../chart-forms/scatter/scatter.component';
-import { BoxplotComponent } from '../chart-forms/boxplot/boxplot.component';
-import { CandlestickComponent } from '../chart-forms/candlestick/candlestick.component';
-import { HeatmapComponent } from '../chart-forms/heatmap/heatmap.component';
-import { RadarComponent } from '../chart-forms/radar/radar.component';
-import { GraphComponent } from '../chart-forms/graph/graph.component';
 import { CommonModule } from '@angular/common';
 import { ChartDataManagerService } from '../../services/chart-data-manager.service';
 import { ChartJsonTemplateService } from '../../services/chart-json_template.service';
@@ -50,7 +41,12 @@ export class AddNewChartComponent {
 
   private getAvailableCharts() {
     this.available_charts = AVAILABLE_CHARTS.map((m: IAvailableChart) => {
-      return { chartType: m.chartType, chartIcon: this.sanitizer.bypassSecurityTrustHtml(m.chartIcon as string) }
+      return {
+        chartType: m.chartType,
+        chartIcon: this.sanitizer.bypassSecurityTrustHtml(m.chartIcon as string),
+        chartFormTemplate: m.chartFormTemplate,
+        isMultiSeriesChart: m.isMultiSeriesChart
+      }
     })
   }
 
@@ -70,66 +66,66 @@ export class AddNewChartComponent {
     switch (chartType.chartType) {
       case ChartTypeEnum.LINE:
         config.data = {
-          isMultiSeriesChart: true,
+          isMultiSeriesChart: chartType.isMultiSeriesChart,
           chart_configuration_template: await this.getChartConfiguration(ChartTypeEnum.LINE)
         }
-        dynamicDialogConfig = { component: LineComponent, config: config };
+        dynamicDialogConfig = { component: chartType.chartFormTemplate, config: config };
         break;
       case ChartTypeEnum.BAR:
         config.data = {
-          isMultiSeriesChart: true,
+          isMultiSeriesChart: chartType.isMultiSeriesChart,
           chart_configuration_template: await this.getChartConfiguration(ChartTypeEnum.BAR)
         }
-        dynamicDialogConfig = { component: BarComponent, config: config };
+        dynamicDialogConfig = { component: chartType.chartFormTemplate, config: config };
         break;
       case ChartTypeEnum.PIE:
         config.data = {
-          isMultiSeriesChart: true,
+          isMultiSeriesChart: chartType.isMultiSeriesChart,
           chart_configuration_template: await this.getChartConfiguration(ChartTypeEnum.PIE)
         }
-        dynamicDialogConfig = { component: PieComponent, config: config };
+        dynamicDialogConfig = { component: chartType.chartFormTemplate, config: config };
         break;
       case ChartTypeEnum.SCATTER:
         config.data = {
-          isMultiSeriesChart: true,
+          isMultiSeriesChart: chartType.isMultiSeriesChart,
           chart_configuration_template: await this.getChartConfiguration(ChartTypeEnum.SCATTER)
         }
-        dynamicDialogConfig = { component: ScatterComponent, config: config };
+        dynamicDialogConfig = { component: chartType.chartFormTemplate, config: config };
         break;
       case ChartTypeEnum.BOXPLOT:
         config.data = {
-          isMultiSeriesChart: true,
+          isMultiSeriesChart: chartType.isMultiSeriesChart,
           chart_configuration_template: await this.getChartConfiguration(ChartTypeEnum.BOXPLOT)
         }
-        dynamicDialogConfig = { component: BoxplotComponent, config: config };
+        dynamicDialogConfig = { component: chartType.chartFormTemplate, config: config };
         break;
       case ChartTypeEnum.CANDLESTICK:
         config.data = {
-          isMultiSeriesChart: true,
+          isMultiSeriesChart: chartType.isMultiSeriesChart,
           chart_configuration_template: await this.getChartConfiguration(ChartTypeEnum.CANDLESTICK)
         }
-        dynamicDialogConfig = { component: CandlestickComponent, config: config };
+        dynamicDialogConfig = { component: chartType.chartFormTemplate, config: config };
         break;
       case ChartTypeEnum.GRAPH:
         config.data = {
-          isMultiSeriesChart: true,
+          isMultiSeriesChart: chartType.isMultiSeriesChart,
           chart_configuration_template: await this.getChartConfiguration(ChartTypeEnum.GRAPH)
         }
-        dynamicDialogConfig = { component: GraphComponent, config: config };
+        dynamicDialogConfig = { component: chartType.chartFormTemplate, config: config };
         break;
       case ChartTypeEnum.HEATMAP:
         config.data = {
-          isMultiSeriesChart: true,
+          isMultiSeriesChart: chartType.isMultiSeriesChart,
           chart_configuration_template: await this.getChartConfiguration(ChartTypeEnum.HEATMAP)
         }
-        dynamicDialogConfig = { component: HeatmapComponent, config: config };
+        dynamicDialogConfig = { component: chartType.chartFormTemplate, config: config };
         break;
       case ChartTypeEnum.RADAR:
         config.data = {
-          isMultiSeriesChart: true,
+          isMultiSeriesChart: chartType.isMultiSeriesChart,
           chart_configuration_template: await this.getChartConfiguration(ChartTypeEnum.RADAR)
         }
-        dynamicDialogConfig = { component: RadarComponent, config: config };
+        dynamicDialogConfig = { component: chartType.chartFormTemplate, config: config };
         break;
     }
     this.dynamicDialogService.ShowDialog(dynamicDialogConfig);
