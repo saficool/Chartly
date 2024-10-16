@@ -15,18 +15,22 @@ import { RadarComponent } from '../chart-forms/radar/radar.component';
 import { IDynamicDialog, IDynamicDialogConfig } from '../../interfaces/dynamic-dialog.interface';
 import { DynamicDialogService } from '../../services/dynamic-dialog.service';
 import { StringTransformerService } from '../../services/string-transformer.service';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ConfirmationService } from 'primeng/api';
 
 @Component({
   selector: 'app-chart-list',
   standalone: true,
-  imports: [],
+  imports: [ConfirmDialogModule],
   templateUrl: './chart-list.component.html',
-  styleUrl: './chart-list.component.scss'
+  styleUrl: './chart-list.component.scss',
+  providers: [ConfirmationService]
 })
 export class ChartListComponent {
   protected chartsService = inject(ChartsService)
   private dynamicDialogService: IDynamicDialog = inject(DynamicDialogService)
   private stringTransformerService = inject(StringTransformerService)
+  private confirmationService = inject(ConfirmationService)
 
   ngOnInit(): void { }
 
@@ -111,8 +115,22 @@ export class ChartListComponent {
     this.dynamicDialogService.ShowDialog(dynamicDialogConfig);
   }
 
-  removeThisChart(index: number) {
-    this.chartsService.removeConfiguration(index)
+  removeThisChart(index: number, event: Event) {
+    this.confirmationService.confirm({
+      target: event.target as EventTarget,
+      message: 'Are you sure that you want to proceed?',
+      header: 'Confirmation',
+      icon: 'pi pi-exclamation-triangle',
+      // defaultFocus: 'reject',
+      acceptIcon: "none",
+      rejectIcon: "none",
+      rejectButtonStyleClass: "p-button-text",
+      accept: () => {
+        this.chartsService.removeConfiguration(index)
+      },
+      reject: () => { }
+    });
+
   }
 
 }

@@ -10,9 +10,11 @@
         <span type="button" class="me-2" (click)="editThisChart(generated_chart)">
             <i class="bi bi-pencil-square text-warning"></i>
         </span>
-        <span type="button" (click)="removeThisChart($index)">
+        <span type="button" (click)="removeThisChart($index, $event)">
             <i class="bi bi-trash text-danger"></i>
         </span>
     </li>
     }
 </ul>
+
+<p-confirmDialog />

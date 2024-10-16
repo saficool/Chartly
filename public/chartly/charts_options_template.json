@@ -3,7 +3,7 @@
         "type": "line",
         "options": {
             "title": {
-                "text": "Sample Tilte",
+                "text": "Sample Title",
                 "textStyle": {
                     "fontSize": 14
                 }
@@ -33,7 +33,7 @@
         "type": "bar",
         "options": {
             "title": {
-                "text": "Sample Tilte",
+                "text": "Sample Title",
                 "textStyle": {
                     "fontSize": 14
                 }
@@ -63,7 +63,7 @@
         "type": "pie",
         "options": {
             "title": {
-                "text": "Sample Tilte",
+                "text": "Sample Title",
                 "textStyle": {
                     "fontSize": 14
                 }
@@ -98,7 +98,7 @@
         "type": "radar",
         "options": {
             "title": {
-                "text": "Sample Tilte",
+                "text": "Sample Title",
                 "textStyle": {
                     "fontSize": 14
                 }
