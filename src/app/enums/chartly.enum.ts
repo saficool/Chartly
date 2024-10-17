@@ -2,12 +2,7 @@ export enum ChartTypeEnum {
     LINE = 'line',
     BAR = 'bar',
     PIE = 'pie',
-    SCATTER = 'scatter',
-    CANDLESTICK = 'candlestick',
-    RADAR = 'radar',
-    BOXPLOT = 'boxplot',
-    HEATMAP = 'heatmap',
-    GRAPH = 'graph'
+    RADAR = 'radar'
 }
 
 export enum AggregateFunctionEnum {

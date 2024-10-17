@@ -85,41 +85,6 @@ export class AddNewChartComponent {
         }
         dynamicDialogConfig = { component: chartType.chartFormTemplate, config: config };
         break;
-      case ChartTypeEnum.SCATTER:
-        config.data = {
-          isMultiSeriesChart: chartType.isMultiSeriesChart,
-          chart_configuration_template: await this.getChartConfiguration(ChartTypeEnum.SCATTER)
-        }
-        dynamicDialogConfig = { component: chartType.chartFormTemplate, config: config };
-        break;
-      case ChartTypeEnum.BOXPLOT:
-        config.data = {
-          isMultiSeriesChart: chartType.isMultiSeriesChart,
-          chart_configuration_template: await this.getChartConfiguration(ChartTypeEnum.BOXPLOT)
-        }
-        dynamicDialogConfig = { component: chartType.chartFormTemplate, config: config };
-        break;
-      case ChartTypeEnum.CANDLESTICK:
-        config.data = {
-          isMultiSeriesChart: chartType.isMultiSeriesChart,
-          chart_configuration_template: await this.getChartConfiguration(ChartTypeEnum.CANDLESTICK)
-        }
-        dynamicDialogConfig = { component: chartType.chartFormTemplate, config: config };
-        break;
-      case ChartTypeEnum.GRAPH:
-        config.data = {
-          isMultiSeriesChart: chartType.isMultiSeriesChart,
-          chart_configuration_template: await this.getChartConfiguration(ChartTypeEnum.GRAPH)
-        }
-        dynamicDialogConfig = { component: chartType.chartFormTemplate, config: config };
-        break;
-      case ChartTypeEnum.HEATMAP:
-        config.data = {
-          isMultiSeriesChart: chartType.isMultiSeriesChart,
-          chart_configuration_template: await this.getChartConfiguration(ChartTypeEnum.HEATMAP)
-        }
-        dynamicDialogConfig = { component: chartType.chartFormTemplate, config: config };
-        break;
       case ChartTypeEnum.RADAR:
         config.data = {
           isMultiSeriesChart: chartType.isMultiSeriesChart,

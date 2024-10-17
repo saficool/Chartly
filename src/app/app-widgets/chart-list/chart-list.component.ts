@@ -6,11 +6,6 @@ import { ChartTypeEnum } from '../../enums/chartly.enum';
 import { LineComponent } from '../chart-forms/line/line.component';
 import { BarComponent } from '../chart-forms/bar/bar.component';
 import { PieComponent } from '../chart-forms/pie/pie.component';
-import { ScatterComponent } from '../chart-forms/scatter/scatter.component';
-import { BoxplotComponent } from '../chart-forms/boxplot/boxplot.component';
-import { CandlestickComponent } from '../chart-forms/candlestick/candlestick.component';
-import { GraphComponent } from '../chart-forms/graph/graph.component';
-import { HeatmapComponent } from '../chart-forms/heatmap/heatmap.component';
 import { RadarComponent } from '../chart-forms/radar/radar.component';
 import { IDynamicDialog, IDynamicDialogConfig } from '../../interfaces/dynamic-dialog.interface';
 import { DynamicDialogService } from '../../services/dynamic-dialog.service';
@@ -68,41 +63,6 @@ export class ChartListComponent {
           chart_configuration_template: chart_configs
         }
         dynamicDialogConfig = { component: PieComponent, config: config };
-        break;
-      case ChartTypeEnum.SCATTER:
-        config.data = {
-          isMultiSeriesChart: true,
-          chart_configuration_template: chart_configs
-        }
-        dynamicDialogConfig = { component: ScatterComponent, config: config };
-        break;
-      case ChartTypeEnum.BOXPLOT:
-        config.data = {
-          isMultiSeriesChart: true,
-          chart_configuration_template: chart_configs
-        }
-        dynamicDialogConfig = { component: BoxplotComponent, config: config };
-        break;
-      case ChartTypeEnum.CANDLESTICK:
-        config.data = {
-          isMultiSeriesChart: true,
-          chart_configuration_template: chart_configs
-        }
-        dynamicDialogConfig = { component: CandlestickComponent, config: config };
-        break;
-      case ChartTypeEnum.GRAPH:
-        config.data = {
-          isMultiSeriesChart: true,
-          chart_configuration_template: chart_configs
-        }
-        dynamicDialogConfig = { component: GraphComponent, config: config };
-        break;
-      case ChartTypeEnum.HEATMAP:
-        config.data = {
-          isMultiSeriesChart: true,
-          chart_configuration_template: chart_configs
-        }
-        dynamicDialogConfig = { component: HeatmapComponent, config: config };
         break;
       case ChartTypeEnum.RADAR:
         config.data = {
