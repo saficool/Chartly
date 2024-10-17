@@ -103,6 +103,7 @@ export class LineComponent {
             {
               name: aggregate_numerical_object.numerical_column,
               type: 'line',
+              label: { show: true },
               data: result_avg.map(m => Number(m.value.toFixed(2)))
             }
           )
@@ -119,6 +120,7 @@ export class LineComponent {
             {
               name: aggregate_numerical_object.numerical_column,
               type: 'line',
+              label: { show: true },
               data: result_count.map(m => Number(m.value.toFixed(2)))
             }
           )
@@ -135,6 +137,7 @@ export class LineComponent {
             {
               name: aggregate_numerical_object.numerical_column,
               type: 'line',
+              label: { show: true },
               data: result_max.map(m => Number(m.value.toFixed(2)))
             }
           )
@@ -151,6 +154,7 @@ export class LineComponent {
             {
               name: aggregate_numerical_object.numerical_column,
               type: 'line',
+              label: { show: true },
               data: result_median.map(m => Number(m.value.toFixed(2)))
             }
           )
@@ -167,6 +171,7 @@ export class LineComponent {
             {
               name: aggregate_numerical_object.numerical_column,
               type: 'line',
+              label: { show: true },
               data: result_min.map(m => Number(m.value.toFixed(2)))
             }
           )
@@ -183,6 +188,7 @@ export class LineComponent {
             {
               name: aggregate_numerical_object.numerical_column,
               type: 'line',
+              label: { show: true },
               data: result_mode.map(m => Number(m.value.toFixed(2)))
             }
           )
@@ -200,6 +206,7 @@ export class LineComponent {
             {
               name: aggregate_numerical_object.numerical_column,
               type: 'line',
+              label: { show: true },
               data: result_qtl.map(m => Number(m.value.toFixed(2)))
             }
           )
@@ -216,6 +223,7 @@ export class LineComponent {
             {
               name: aggregate_numerical_object.numerical_column,
               type: 'line',
+              label: { show: true },
               data: result_sd.map(m => Number(m.value.toFixed(2)))
             }
           )
@@ -232,6 +240,7 @@ export class LineComponent {
             {
               name: aggregate_numerical_object.numerical_column,
               type: 'line',
+              label: { show: true },
               data: result_sum.map(m => Number(m.value.toFixed(2)))
             }
           )
@@ -248,6 +257,7 @@ export class LineComponent {
             {
               name: aggregate_numerical_object.numerical_column,
               type: 'line',
+              label: { show: true },
               data: result_vr.map(m => Number(m.value.toFixed(2)))
             }
           )

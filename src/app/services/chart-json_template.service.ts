@@ -19,10 +19,4 @@ export class ChartJsonTemplateService {
         );
         return json_skeleton.find(f => f.type === chartType).options
     }
-
-    async GetChartsConfigurationTemplate(): Promise<IChartConfiguration> {
-        return await firstValueFrom(
-            this.http.get<IChartConfiguration>("chartly/chart_configuration_template.json")
-        );
-    }
 }

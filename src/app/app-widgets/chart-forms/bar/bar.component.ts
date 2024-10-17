@@ -102,6 +102,7 @@ export class BarComponent {
             {
               name: aggregate_numerical_object.numerical_column,
               type: 'bar',
+              label: { show: true, position: 'top' },
               data: result_avg.map(m => Number(m.value.toFixed(2)))
             }
           )
@@ -118,6 +119,7 @@ export class BarComponent {
             {
               name: aggregate_numerical_object.numerical_column,
               type: 'bar',
+              label: { show: true, position: 'top' },
               data: result_count.map(m => Number(m.value.toFixed(2)))
             }
           )
@@ -134,6 +136,7 @@ export class BarComponent {
             {
               name: aggregate_numerical_object.numerical_column,
               type: 'bar',
+              label: { show: true, position: 'top' },
               data: result_max.map(m => Number(m.value.toFixed(2)))
             }
           )
@@ -150,6 +153,7 @@ export class BarComponent {
             {
               name: aggregate_numerical_object.numerical_column,
               type: 'bar',
+              label: { show: true, position: 'top' },
               data: result_median.map(m => Number(m.value.toFixed(2)))
             }
           )
@@ -166,6 +170,7 @@ export class BarComponent {
             {
               name: aggregate_numerical_object.numerical_column,
               type: 'bar',
+              label: { show: true, position: 'top' },
               data: result_min.map(m => Number(m.value.toFixed(2)))
             }
           )
@@ -182,6 +187,7 @@ export class BarComponent {
             {
               name: aggregate_numerical_object.numerical_column,
               type: 'bar',
+              label: { show: true, position: 'top' },
               data: result_mode.map(m => Number(m.value.toFixed(2)))
             }
           )
@@ -199,6 +205,7 @@ export class BarComponent {
             {
               name: aggregate_numerical_object.numerical_column,
               type: 'bar',
+              label: { show: true, position: 'top' },
               data: result_qtl.map(m => Number(m.value.toFixed(2)))
             }
           )
@@ -215,6 +222,7 @@ export class BarComponent {
             {
               name: aggregate_numerical_object.numerical_column,
               type: 'bar',
+              label: { show: true, position: 'top' },
               data: result_sd.map(m => Number(m.value.toFixed(2)))
             }
           )
@@ -231,6 +239,7 @@ export class BarComponent {
             {
               name: aggregate_numerical_object.numerical_column,
               type: 'bar',
+              label: { show: true, position: 'top' },
               data: result_sum.map(m => Number(m.value.toFixed(2)))
             }
           )
@@ -247,6 +256,7 @@ export class BarComponent {
             {
               name: aggregate_numerical_object.numerical_column,
               type: 'bar',
+              label: { show: true, position: 'top' },
               data: result_vr.map(m => Number(m.value.toFixed(2)))
             }
           )
